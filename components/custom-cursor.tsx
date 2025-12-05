@@ -64,81 +64,110 @@ export function CustomCursor() {
 
     return (
         <>
-            {/* Film Frame Cursor - Outer Frame */}
+            {/* OUTER RING - Follows with delay for trailing effect */}
             <motion.div
-                className="fixed top-0 left-0 pointer-events-none z-[9999]"
+                className="fixed top-0 left-0 pointer-events-none z-[9998]"
                 animate={{
-                    x: mousePosition.x - 16,
-                    y: mousePosition.y - 12,
+                    x: mousePosition.x - 20,
+                    y: mousePosition.y - 20,
                 }}
                 transition={{
                     type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                    mass: 0.5,
+                    stiffness: 150,
+                    damping: 15,
+                    mass: 0.8,
                 }}
             >
-                {/* Film strip frame */}
                 <motion.div
-                    className="relative"
+                    className="w-10 h-10 rounded-full border border-white/30"
                     animate={{
-                        scale: isHovering ? 1.3 : 1,
-                        rotate: isHovering ? 5 : 0,
+                        scale: isHovering ? 1.8 : 1,
+                        borderColor: isHovering ? "rgba(0, 123, 255, 0.6)" : "rgba(255, 255, 255, 0.3)",
+                        borderWidth: isHovering ? "2px" : "1px",
                     }}
                     transition={{
                         type: "spring",
                         stiffness: 300,
                         damping: 20,
                     }}
-                >
-                    {/* Left perforations */}
-                    <div className="absolute -left-1 top-0 flex flex-col gap-1">
-                        <div className="w-1.5 h-1.5 rounded-sm bg-white/60" />
-                        <div className="w-1.5 h-1.5 rounded-sm bg-white/60" />
-                        <div className="w-1.5 h-1.5 rounded-sm bg-white/60" />
-                    </div>
-
-                    {/* Right perforations */}
-                    <div className="absolute -right-1 top-0 flex flex-col gap-1">
-                        <div className="w-1.5 h-1.5 rounded-sm bg-white/60" />
-                        <div className="w-1.5 h-1.5 rounded-sm bg-white/60" />
-                        <div className="w-1.5 h-1.5 rounded-sm bg-white/60" />
-                    </div>
-
-                    {/* Main frame */}
-                    <div className="w-8 h-6 border-2 border-white/70 rounded-sm flex items-center justify-center bg-transparent">
-                        {/* Center crosshair */}
-                        <motion.div
-                            className="w-1.5 h-1.5 bg-electric-blue rounded-full"
-                            animate={{
-                                scale: isHovering ? [1, 1.5, 1] : 1,
-                                opacity: isHovering ? 1 : 0.8,
-                            }}
-                            transition={{
-                                duration: 0.3,
-                                repeat: isHovering ? Infinity : 0,
-                                repeatType: "reverse",
-                            }}
-                        />
-                    </div>
-                </motion.div>
+                />
             </motion.div>
 
-            {/* Glow effect behind cursor */}
+            {/* INNER DOT - Follows mouse precisely */}
             <motion.div
-                className="fixed top-0 left-0 w-12 h-12 bg-electric-blue/15 rounded-full pointer-events-none z-[9998] blur-xl"
+                className="fixed top-0 left-0 pointer-events-none z-[9999]"
                 animate={{
-                    x: mousePosition.x - 24,
-                    y: mousePosition.y - 24,
-                    scale: isHovering ? 1.5 : 1,
-                    opacity: isHovering ? 0.4 : 0.2,
+                    x: mousePosition.x - 4,
+                    y: mousePosition.y - 4,
                 }}
                 transition={{
                     type: "spring",
-                    stiffness: 150,
-                    damping: 20,
+                    stiffness: 500,
+                    damping: 28,
+                    mass: 0.3,
                 }}
-            />
+            >
+                <motion.div
+                    className="w-2 h-2 rounded-full bg-white"
+                    animate={{
+                        scale: isHovering ? 0.5 : 1,
+                        backgroundColor: isHovering ? "#007BFF" : "#ffffff",
+                    }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                    }}
+                />
+            </motion.div>
+
+            {/* GLOW EFFECT - Atmospheric trail */}
+            <motion.div
+                className="fixed top-0 left-0 pointer-events-none z-[9997] mix-blend-screen"
+                animate={{
+                    x: mousePosition.x - 40,
+                    y: mousePosition.y - 40,
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 80,
+                    damping: 20,
+                    mass: 1.2,
+                }}
+            >
+                <motion.div
+                    className="w-20 h-20 rounded-full bg-electric-blue/20 blur-2xl"
+                    animate={{
+                        scale: isHovering ? 1.5 : 1,
+                        opacity: isHovering ? 0.5 : 0.25,
+                    }}
+                    transition={{
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 25,
+                    }}
+                />
+            </motion.div>
+
+            {/* HOVER TEXT INDICATOR (Optional: Shows on link hover) */}
+            <motion.div
+                className="fixed top-0 left-0 pointer-events-none z-[10000] flex items-center justify-center"
+                animate={{
+                    x: mousePosition.x - 30,
+                    y: mousePosition.y - 30,
+                    opacity: isHovering ? 1 : 0,
+                    scale: isHovering ? 1 : 0.5,
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 25,
+                }}
+            >
+                <div className="w-[60px] h-[60px] rounded-full border border-electric-blue/50 flex items-center justify-center">
+                    <span className="text-[8px] font-bold tracking-widest text-electric-blue uppercase">VIEW</span>
+                </div>
+            </motion.div>
         </>
     );
 }

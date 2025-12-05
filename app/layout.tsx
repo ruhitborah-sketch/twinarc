@@ -5,6 +5,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CustomCursor } from "@/components/custom-cursor";
+import { Preloader } from "@/components/layout/preloader";
 
 const conthrax = localFont({
   src: "../public/Conthrax-SemiBold.otf",
@@ -48,6 +49,7 @@ export default function RootLayout({
           conthrax.variable
         )}
       >
+        <Preloader />
         <CustomCursor />
         <SmoothScroll>
           {children}

@@ -34,6 +34,7 @@ export function Navbar() {
         { href: "/about", label: "ABOUT" },
         { href: "/services", label: "SERVICES" },
         { href: "/careers", label: "CAREERS" },
+        { href: "/contact", label: "CONTACT" },
     ];
 
     const menuLineVariants = {
@@ -51,13 +52,16 @@ export function Navbar() {
                 className={cn(
                     "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b",
                     scrolled
-                        ? "bg-black/70 backdrop-blur-2xl border-white/10 py-3"
-                        : "bg-transparent border-transparent py-5"
+                        ? "bg-black/80 backdrop-blur-xl border-white/5 py-4"
+                        : "bg-transparent border-transparent py-6"
                 )}
             >
-                <div className="container mx-auto px-6 flex items-center justify-between">
+                {/* Global Grain Texture for Nav */}
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
+
+                <div className="container mx-auto px-6 flex items-center justify-between relative z-10">
                     {/* Logo */}
-                    <Link href="/" className="relative h-16 w-56 transition-all duration-300 hover:opacity-80">
+                    <Link href="/" className="relative h-12 w-48 transition-all duration-300 hover:opacity-80">
                         <img
                             src="/logo-final.png"
                             alt="TwinArc Motion"
@@ -66,31 +70,33 @@ export function Navbar() {
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center gap-10">
+                    <div className="hidden lg:flex items-center gap-12">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="relative text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 group"
+                                className="relative text-sm font-medium text-white/60 hover:text-white transition-colors duration-300 group tracking-widest"
                             >
                                 {link.label}
-                                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-electric-blue to-purple-500 group-hover:w-full transition-all duration-300" />
+                                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-electric-blue opacity-0 group-hover:opacity-100 transition-all duration-300" />
                             </Link>
                         ))}
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <Button
-                            variant="outline"
-                            className="hidden lg:inline-flex border-electric-blue text-electric-blue hover:bg-electric-blue hover:text-white transition-all duration-300"
-                        >
-                            GET IN TOUCH
-                        </Button>
+                        <Link href="/contact">
+                            <Button
+                                variant="outline"
+                                className="hidden lg:inline-flex border-white/10 bg-white/5 text-white hover:bg-electric-blue hover:border-electric-blue hover:text-black transition-all duration-300 rounded-full px-6 tracking-wide text-xs"
+                            >
+                                START A PROJECT
+                            </Button>
+                        </Link>
 
                         {/* Mobile Menu Toggle - Custom Hamburger */}
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                            className="lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-[6px] z-[60]"
+                            className="lg:hidden relative w-12 h-12 flex flex-col items-center justify-center gap-[6px] z-[60] group"
                             aria-label="Toggle menu"
                         >
                             {[1, 2, 3].map((line) => (
@@ -100,7 +106,7 @@ export function Navbar() {
                                     variants={menuLineVariants}
                                     animate={mobileMenuOpen ? "open" : "closed"}
                                     transition={{ duration: 0.3 }}
-                                    className="block w-7 h-[2px] bg-white origin-center"
+                                    className="block w-8 h-[2px] bg-white group-hover:bg-electric-blue transition-colors duration-300 origin-center"
                                 />
                             ))}
                         </button>
@@ -118,13 +124,15 @@ export function Navbar() {
                         transition={{ duration: 0.4 }}
                         className="fixed inset-0 z-[55] lg:hidden"
                     >
-                        {/* Backdrop with blur */}
+                        {/* Backdrop with blur and grain */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="absolute inset-0 bg-black/95 backdrop-blur-3xl"
-                        />
+                            className="absolute inset-0 bg-neutral-950/95 backdrop-blur-3xl"
+                        >
+                            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05]" />
+                        </motion.div>
 
                         {/* Close Button */}
                         <motion.button
@@ -133,7 +141,7 @@ export function Navbar() {
                             exit={{ opacity: 0, rotate: 90 }}
                             transition={{ duration: 0.3 }}
                             onClick={() => setMobileMenuOpen(false)}
-                            className="absolute top-6 right-6 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-300"
+                            className="absolute top-6 right-6 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors duration-300"
                             aria-label="Close menu"
                         >
                             <svg
@@ -152,13 +160,9 @@ export function Navbar() {
                             </svg>
                         </motion.button>
 
-                        {/* Gradient Orbs for visual effect */}
-                        <div className="absolute top-20 -left-32 w-64 h-64 bg-electric-blue/20 rounded-full blur-[100px]" />
-                        <div className="absolute bottom-40 -right-32 w-64 h-64 bg-purple-500/20 rounded-full blur-[100px]" />
-
                         {/* Menu Content */}
-                        <div className="relative h-full flex flex-col justify-center items-center px-8">
-                            <nav className="flex flex-col items-center gap-2">
+                        <div className="relative h-full flex flex-col justify-center items-center px-6">
+                            <nav className="flex flex-col items-center gap-6">
                                 {navLinks.map((link, index) => (
                                     <motion.div
                                         key={link.href}
@@ -174,17 +178,11 @@ export function Navbar() {
                                         <Link
                                             href={link.href}
                                             onClick={() => setMobileMenuOpen(false)}
-                                            className="group relative block py-4 px-6"
+                                            className="group relative block"
                                         >
-                                            <span className="text-4xl font-bold text-white/90 group-hover:text-electric-blue transition-colors duration-300">
+                                            <span className="text-5xl md:text-7xl font-heading font-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tighter">
                                                 {link.label}
                                             </span>
-                                            <motion.span
-                                                className="absolute bottom-2 left-6 right-6 h-[2px] bg-gradient-to-r from-electric-blue to-purple-500 origin-left"
-                                                initial={{ scaleX: 0 }}
-                                                whileHover={{ scaleX: 1 }}
-                                                transition={{ duration: 0.3 }}
-                                            />
                                         </Link>
                                     </motion.div>
                                 ))}
@@ -196,30 +194,15 @@ export function Navbar() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: 20 }}
                                 transition={{ duration: 0.4, delay: 0.5 }}
-                                className="mt-12"
+                                className="mt-16"
                             >
-                                <Button
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="relative overflow-hidden bg-gradient-to-r from-electric-blue to-purple-500 text-white border-0 px-10 py-6 text-lg font-bold rounded-full group"
-                                >
-                                    <span className="relative z-10">GET IN TOUCH</span>
-                                    <motion.div
-                                        className="absolute inset-0 bg-white/20"
-                                        initial={{ x: "-100%" }}
-                                        whileHover={{ x: "100%" }}
-                                        transition={{ duration: 0.5 }}
-                                    />
-                                </Button>
-                            </motion.div>
-
-                            {/* Social Links or Additional Info */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.4, delay: 0.7 }}
-                                className="absolute bottom-12 left-0 right-0 flex justify-center gap-8 text-white/40 text-sm"
-                            >
-                                <span>hello@twinarcmotion.com</span>
+                                <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                                    <Button
+                                        className="bg-white text-black hover:bg-electric-blue hover:text-black transition-all duration-300 text-lg px-10 py-6 rounded-full font-bold uppercase tracking-wider"
+                                    >
+                                        Start a Project
+                                    </Button>
+                                </Link>
                             </motion.div>
                         </div>
                     </motion.div>

@@ -1,103 +1,132 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { Instagram, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Instagram, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="bg-neutral-950 border-t border-white/10 pt-20 pb-10">
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        <footer className="relative bg-neutral-950 pt-32 pb-8 overflow-hidden">
+            {/* Background Atmosphere */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-electric-blue/5 blur-[150px] rounded-full mix-blend-screen opacity-30" />
+                <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-purple-900/10 blur-[150px] rounded-full mix-blend-screen opacity-30" />
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03]" />
+            </div>
 
-                    {/* Brand */}
-                    <div className="space-y-4">
-                        {/* Logo + TwinArc Motion on same line */}
-                        <div className="flex items-center gap-3">
-                            <div className="relative w-12 h-12 shrink-0">
-                                <Image
-                                    src="/logo-final.png"
-                                    alt="TwinArc Motion Logo"
-                                    fill
-                                    className="object-contain"
-                                />
-                            </div>
-                            <div className="flex flex-col leading-tight">
-                                <span
-                                    className="text-lg font-conthrax font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-400 tracking-wider"
-                                    style={{ filter: "drop-shadow(0 0 6px rgba(255, 0, 150, 0.4))" }}
-                                >
-                                    TwinArc
-                                </span>
-                                <span
-                                    className="text-lg font-conthrax font-bold text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-blue-700 tracking-wider"
-                                    style={{ filter: "drop-shadow(0 0 6px rgba(0, 150, 255, 0.4))" }}
-                                >
-                                    Motion
-                                </span>
-                            </div>
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
+                {/* TOP SECTION: CTA & LINKS */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-24 md:mb-32">
+
+                    {/* CTA Column */}
+                    <div className="md:col-span-6 space-y-8 text-center md:text-left flex flex-col items-center md:items-start">
+                        <h2 className="text-4xl md:text-6xl font-heading font-bold text-white leading-[0.9]">
+                            HAVE AN IDEA?
+                            <br />
+                            <span className="text-white/40">LET'S BUILD IT.</span>
+                        </h2>
+
+                        <Link href="/contact" className="inline-block group">
+                            <motion.button
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="relative overflow-hidden px-8 py-5 bg-white text-black rounded-full font-bold tracking-wider text-sm flex items-center gap-3"
+                            >
+                                <span className="relative z-10">START A PROJECT</span>
+                                <ArrowUpRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                <div className="absolute inset-0 bg-electric-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </motion.button>
+                        </Link>
+                    </div>
+
+                    {/* SITEMAP */}
+                    <div className="md:col-span-2 text-center md:text-left">
+                        <h3 className="text-xs font-bold tracking-[0.2em] text-white/40 uppercase mb-8">Menu</h3>
+                        <ul className="space-y-4 flex flex-col items-center md:items-start">
+                            {["Projects", "About", "Services", "Careers"].map((item) => (
+                                <li key={item}>
+                                    <Link href={`/${item.toLowerCase()}`} className="text-white/70 hover:text-electric-blue transition-colors text-sm font-medium tracking-wide block relative group w-fit">
+                                        <span className="relative z-10">{item}</span>
+                                        <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-electric-blue transition-all duration-300 group-hover:w-full" />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* CONTACT */}
+                    <div className="md:col-span-2 text-center md:text-left">
+                        <h3 className="text-xs font-bold tracking-[0.2em] text-white/40 uppercase mb-8">Contact</h3>
+                        <ul className="space-y-4 flex flex-col items-center md:items-start">
+                            <li>
+                                <a href="mailto:hello@twinarcmotion.com" className="text-white/70 hover:text-electric-blue transition-colors text-sm font-medium tracking-wide">
+                                    hello@twinarcmotion.com
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:+919876543210" className="text-white/70 hover:text-electric-blue transition-colors text-sm font-medium tracking-wide">
+                                    +91 98765 43210
+                                </a>
+                            </li>
+                            <li className="text-white/40 text-sm leading-relaxed pt-2">
+                                Dibrugarh, Assam<br />India, 786001
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* SOCIALS */}
+                    <div className="md:col-span-2 text-center md:text-left">
+                        <h3 className="text-xs font-bold tracking-[0.2em] text-white/40 uppercase mb-8">Follow</h3>
+                        <ul className="space-y-4 flex flex-col items-center md:items-start">
+                            {[
+                                { name: "Instagram", icon: Instagram },
+                                { name: "Facebook", icon: Facebook },
+                                { name: "YouTube", icon: Youtube }
+                            ].map((social) => (
+                                <li key={social.name}>
+                                    <Link href="#" className="flex items-center gap-3 text-white/70 hover:text-electric-blue transition-colors group">
+                                        <social.icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                                        <span className="text-sm font-medium tracking-wide">{social.name}</span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                {/* BOTTOM BRANDING */}
+                <div className="border-t border-white/10 pt-16 mb-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1 }}
+                        className="relative"
+                    >
+                        <h1 className="text-[12vw] md:text-[13.5vw] font-conthrax font-bold text-center leading-[0.8] text-transparent bg-clip-text bg-gradient-to-b from-white/90 via-white/50 to-transparent tracking-tighter opacity-20 hover:opacity-40 transition-opacity duration-700 select-none">
+                            TWINARC
+                        </h1>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-[12vw] md:text-[13.5vw] font-conthrax font-bold text-center leading-[0.8] text-transparent stroke-text opacity-10 pointer-events-none">
+                            TWINARC
                         </div>
-                        <p className="text-white/50 text-sm leading-relaxed">
-                            Creating cinematic universes from the heart of Northeast India.
+                    </motion.div>
+
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-8 pt-8 border-t border-white/5">
+                        <p className="text-[10px] md:text-xs text-white/30 font-mono tracking-widest uppercase">
+                            © {new Date().getFullYear()} TWINARC MOTION.
+                        </p>
+                        <p className="text-[10px] md:text-xs text-white/30 font-mono tracking-widest uppercase flex items-center gap-1">
+                            Cinematic Intelligence <span className="w-1 h-1 rounded-full bg-electric-blue" /> <a href="https://dekarusys.dev/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-electric-blue transition-colors font-bold">Designed by Dekarusys</a>
                         </p>
                     </div>
-
-                    {/* Navigation */}
-                    <div className="space-y-6">
-                        <h3 className="text-sm font-bold tracking-widest text-white uppercase">Menu</h3>
-                        <ul className="space-y-4">
-                            <li><Link href="/projects" className="text-white/60 hover:text-electric-blue transition-colors text-sm">Projects</Link></li>
-                            <li><Link href="/about" className="text-white/60 hover:text-electric-blue transition-colors text-sm">About Us</Link></li>
-                            <li><Link href="/services" className="text-white/60 hover:text-electric-blue transition-colors text-sm">Services</Link></li>
-                            <li><Link href="/careers" className="text-white/60 hover:text-electric-blue transition-colors text-sm">Careers</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Contact */}
-                    <div className="space-y-6">
-                        <h3 className="text-sm font-bold tracking-widest text-white uppercase">Contact</h3>
-                        <ul className="space-y-4">
-                            <li className="flex items-start gap-3 text-white/60 text-sm">
-                                <MapPin className="w-5 h-5 text-electric-blue shrink-0" />
-                                <span>Dibrugarh, Assam<br />India, 786001</span>
-                            </li>
-                            <li className="flex items-center gap-3 text-white/60 text-sm">
-                                <Mail className="w-5 h-5 text-electric-blue shrink-0" />
-                                <span>hello@twinarcmotion.com</span>
-                            </li>
-                            <li className="flex items-center gap-3 text-white/60 text-sm">
-                                <Phone className="w-5 h-5 text-electric-blue shrink-0" />
-                                <span>+91 98765 43210</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Socials */}
-                    <div className="space-y-6">
-                        <h3 className="text-sm font-bold tracking-widest text-white uppercase">Follow Us</h3>
-                        <div className="flex gap-4">
-                            <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-electric-blue hover:text-white transition-all duration-300 text-white/60">
-                                <Instagram className="w-5 h-5" />
-                            </Link>
-                            <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-electric-blue hover:text-white transition-all duration-300 text-white/60">
-                                <Facebook className="w-5 h-5" />
-                            </Link>
-                            <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-electric-blue hover:text-white transition-all duration-300 text-white/60">
-                                <Youtube className="w-5 h-5" />
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-white/30">
-                        © {new Date().getFullYear()} TwinArc Motion. All rights reserved.
-                    </p>
-                    <p className="text-xs text-white/30">
-                        Designed with <span className="text-electric-blue">♥</span> in Assam.
-                    </p>
                 </div>
             </div>
+
+            <style jsx global>{`
+                .stroke-text {
+                    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+                }
+            `}</style>
         </footer>
     );
 }
