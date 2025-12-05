@@ -61,7 +61,7 @@ export function Navbar() {
 
                 <div className="container mx-auto px-6 flex items-center justify-between relative z-10">
                     {/* Logo */}
-                    <Link href="/" className="relative h-12 w-48 transition-all duration-300 hover:opacity-80">
+                    <Link href="/" className="relative h-12 w-48 transition-all duration-300 hover:opacity-80 z-20">
                         <img
                             src="/logo-final.png"
                             alt="TwinArc Motion"
