@@ -34,13 +34,13 @@ export function Hero() {
                 </video>
             </motion.div>
 
-            <div className="relative z-20 container mx-auto px-4 sm:px-6 h-full flex flex-col justify-center pt-24 sm:pt-32">
-                <div className="max-w-4xl">
+            <div className="relative z-20 container mx-auto px-4 sm:px-6 h-full flex flex-col justify-center items-center sm:items-start pt-24 sm:pt-32">
+                <div className="max-w-4xl text-center sm:text-left">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 2.5 }}
-                        className="flex items-center gap-3 mb-8 sm:mb-12"
+                        className="flex items-center justify-center sm:justify-start gap-3 mb-8 sm:mb-12"
                     >
                         <div className="h-[1px] w-8 sm:w-12 bg-electric-blue" />
                         <span className="text-electric-blue font-bold tracking-[0.2em] sm:tracking-[0.3em] uppercase text-xs sm:text-sm md:text-base">
@@ -84,7 +84,7 @@ export function Hero() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 3 }}
-                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/60 max-w-xl font-light leading-relaxed mb-8 sm:mb-12"
+                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/60 max-w-xl mx-auto sm:mx-0 font-light leading-relaxed mb-8 sm:mb-12"
                     >
                         We craft cinematic universes that bridge the gap between regional stories and global aesthetics.
                     </motion.p>
@@ -93,7 +93,7 @@ export function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 3.2 }}
-                        className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 md:gap-6"
+                        className="flex flex-col sm:flex-row flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 md:gap-6"
                     >
                         <Button size="lg" className="w-full sm:w-auto bg-white text-black hover:bg-white/90 rounded-full px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 text-sm sm:text-base md:text-lg font-bold tracking-wider transition-transform hover:scale-105">
                             VIEW PROJECTS

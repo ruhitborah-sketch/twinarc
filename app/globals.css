@@ -2,39 +2,102 @@
 
 :root {
   --background: #0a0a0a;
-  --foreground: #E5E5E5;
+  --foreground: #e5e5e5;
 
-  /* Custom Colors */
-  --color-electric-blue: #007BFF;
-  --color-neon-purple: #B026FF;
-  --color-charcoal: #121212;
-  --color-silver: #E5E5E5;
+  --electric-blue: #007BFF;
+  --neon-purple: #B026FF;
+  --charcoal: #121212;
+  --silver: #E5E5E5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+/* Custom Tailwind Utilities */
+@layer utilities {
 
-  --color-electric-blue: var(--color-electric-blue);
-  --color-neon-purple: var(--color-neon-purple);
-  --color-charcoal: var(--color-charcoal);
-  --color-silver: var(--color-silver);
+  /* Custom Colors */
+  .bg-electric-blue {
+    background-color: var(--electric-blue);
+  }
 
-  --font-montserrat: var(--font-montserrat);
-  --font-oswald: var(--font-oswald);
-  --font-roboto: var(--font-roboto);
-  --font-clonoid: var(--font-clonoid);
+  .text-electric-blue {
+    color: var(--electric-blue);
+  }
 
-  --font-sans: var(--font-roboto);
-  --font-heading: var(--font-oswald);
-  --font-display: var(--font-montserrat);
+  .border-electric-blue {
+    border-color: var(--electric-blue);
+  }
+
+  .border-electric-blue\/50 {
+    border-color: rgb(0 123 255 / 0.5);
+  }
+
+  .bg-electric-blue\/20 {
+    background-color: rgb(0 123 255 / 0.2);
+  }
+
+  .selection\:bg-electric-blue::selection {
+    background-color: var(--electric-blue);
+  }
+
+  .selection\:text-white::selection {
+    color: white;
+  }
+
+  /* Custom Fonts */
+  .font-clonoid {
+    font-family: var(--font-clonoid), sans-serif;
+  }
+
+  .font-montserrat {
+    font-family: var(--font-montserrat), sans-serif;
+  }
+
+  .font-oswald {
+    font-family: var(--font-oswald), sans-serif;
+  }
+
+  .font-roboto {
+    font-family: var(--font-roboto), sans-serif;
+  }
+
+  .font-heading {
+    font-family: var(--font-oswald), sans-serif;
+  }
+
+  /* Gradient Colors */
+  .from-electric-blue {
+    --tw-gradient-from: var(--electric-blue) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(0 123 255 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .to-electric-blue {
+    --tw-gradient-to: var(--electric-blue) var(--tw-gradient-to-position);
+  }
+
+  .from-neon-purple {
+    --tw-gradient-from: var(--neon-purple) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(176 38 255 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .to-neon-purple {
+    --tw-gradient-to: var(--neon-purple) var(--tw-gradient-to-position);
+  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-roboto);
+  cursor: none;
 }
+
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
+}
+
 
 /* Lenis Smooth Scroll */
 html.lenis,

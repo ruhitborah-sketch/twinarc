@@ -17,21 +17,37 @@ export function Spotlight() {
 
     return (
         <section ref={containerRef} className="relative min-h-screen py-20 bg-black overflow-hidden flex items-center">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto px-4 sm:px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                     {/* Poster Column */}
                     <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                         style={{ y, scale }}
                         className="relative aspect-[2/3] w-full max-w-md mx-auto lg:mx-0 group"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                        <Image
-                            src="/miling-poster.jpg"
-                            alt="MILING - A death messenger Bird"
-                            fill
-                            className="object-cover rounded-sm shadow-2xl shadow-electric-blue/20"
+                        <motion.div
+                            className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500"
+                            initial={{ opacity: 0.8 }}
+                            whileInView={{ opacity: 0.6 }}
+                            viewport={{ once: true }}
                         />
+                        <motion.div
+                            initial={{ scale: 1.1 }}
+                            whileInView={{ scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.2, ease: "easeOut" }}
+                        >
+                            <Image
+                                src="/miling-poster.jpg"
+                                alt="MILING - A death messenger Bird"
+                                fill
+                                className="object-cover rounded-sm shadow-2xl shadow-electric-blue/20"
+                            />
+                        </motion.div>
 
                         {/* Floating Badge */}
                         <div className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
@@ -44,29 +60,65 @@ export function Spotlight() {
                         <motion.div
                             initial={{ opacity: 0, x: 50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <h2 className="text-electric-blue font-bold tracking-widest text-xs sm:text-sm mb-2">SPOTLIGHT PROJECT</h2>
-                            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-bold text-white mb-4 sm:mb-6">MILONG</h3>
-                            <p className="text-base sm:text-lg md:text-xl text-white/70 font-light leading-relaxed mb-6 sm:mb-8">
-                                A journey into the heart of the Mising tribe. "Milong" explores the delicate balance between tradition and modernity, told through the eyes of a young woman returning to her roots.
-                            </p>
+                            <motion.h2
+                                className="text-electric-blue font-bold tracking-widest text-xs sm:text-sm mb-2"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.3 }}
+                            >
+                                SPOTLIGHT PROJECT
+                            </motion.h2>
 
-                            <div className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8">
+                            <motion.h3
+                                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-bold text-white mb-4 sm:mb-6"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                            >
+                                MILONG
+                            </motion.h3>
+
+                            <motion.p
+                                className="text-base sm:text-lg md:text-xl text-white/70 font-light leading-relaxed mb-6 sm:mb-8"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: 0.5 }}
+                            >
+                                A journey into the heart of the Mising tribe. "Milong" explores the delicate balance between tradition and modernity, told through the eyes of a young woman returning to her roots.
+                            </motion.p>
+
+                            <motion.div
+                                className="flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.6 }}
+                            >
                                 <div className="px-3 sm:px-4 py-1.5 sm:py-2 border border-white/20 rounded-full text-xs sm:text-sm text-white/60">DRAMA</div>
                                 <div className="px-3 sm:px-4 py-1.5 sm:py-2 border border-white/20 rounded-full text-xs sm:text-sm text-white/60">120 MIN</div>
                                 <div className="px-3 sm:px-4 py-1.5 sm:py-2 border border-white/20 rounded-full text-xs sm:text-sm text-white/60">ASSAMESE / MISING</div>
-                            </div>
+                            </motion.div>
 
-                            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                            <motion.div
+                                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.7 }}
+                            >
                                 <Button size="lg" className="w-full sm:w-auto bg-electric-blue hover:bg-electric-blue/90 text-white rounded-full px-6 sm:px-8 text-sm sm:text-base">
                                     WATCH TRAILER
                                 </Button>
                                 <Button size="lg" variant="outline" className="w-full sm:w-auto rounded-full px-6 sm:px-8 text-sm sm:text-base">
                                     VIEW DETAILS
                                 </Button>
-                            </div>
+                            </motion.div>
                         </motion.div>
                     </div>
                 </div>

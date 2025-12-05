@@ -17,7 +17,7 @@ export function AboutPreview() {
                             viewport={{ once: true }}
                             className="text-4xl md:text-6xl font-heading font-bold text-white leading-tight"
                         >
-                            BRIDGING <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-blue to-neon-purple">REGIONAL STORIES</span> WITH GLOBAL AESTHETICS.
+                            BRIDGING <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#007BFF] to-[#B026FF]">REGIONAL STORIES</span> WITH GLOBAL AESTHETICS.
                         </motion.h2>
 
                         <motion.p
