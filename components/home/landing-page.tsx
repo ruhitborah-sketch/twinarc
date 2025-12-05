@@ -181,13 +181,7 @@ function IntroVideoSection() {
     const videoScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.98]);
     const videoOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.5]);
 
-    const floatingParticles = [
-        { delay: 0, duration: 6, x: 20, y: -30 },
-        { delay: 1, duration: 8, x: -25, y: -40 },
-        { delay: 2, duration: 7, x: 15, y: -35 },
-        { delay: 0.5, duration: 9, x: -20, y: -25 },
-        { delay: 1.5, duration: 6.5, x: 30, y: -45 },
-    ];
+
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -233,16 +227,16 @@ function IntroVideoSection() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
 
+
+
+
+            {/* Optimized Floating Particles (CSS only) */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none md:hidden">
-                {floatingParticles.map((particle, i) => (
-                    <motion.div
-                        key={i}
-                        className="absolute w-1 h-1 bg-electric-blue/40 rounded-full"
-                        style={{ left: `${15 + i * 18}%`, top: `${40 + i * 8}%` }}
-                        animate={{ x: [0, particle.x, 0], y: [0, particle.y, 0], opacity: [0.2, 0.6, 0.2], scale: [1, 1.5, 1] }}
-                        transition={{ duration: particle.duration, delay: particle.delay, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                ))}
+                <div className="absolute w-1 h-1 bg-electric-blue/40 rounded-full left-[15%] top-[40%] animate-float" style={{ animationDelay: '0s' }} />
+                <div className="absolute w-1 h-1 bg-electric-blue/40 rounded-full left-[33%] top-[48%] animate-float" style={{ animationDelay: '2s', animationDuration: '12s' }} />
+                <div className="absolute w-1 h-1 bg-electric-blue/40 rounded-full left-[51%] top-[42%] animate-float" style={{ animationDelay: '4s', animationDuration: '9s' }} />
+                <div className="absolute w-1 h-1 bg-electric-blue/40 rounded-full left-[69%] top-[45%] animate-float" style={{ animationDelay: '1s', animationDuration: '11s' }} />
+                <div className="absolute w-1 h-1 bg-electric-blue/40 rounded-full left-[87%] top-[38%] animate-float" style={{ animationDelay: '3s', animationDuration: '13s' }} />
             </div>
 
             <div className="absolute left-0 top-1/4 w-[2px] h-32 md:hidden overflow-hidden">
@@ -313,7 +307,7 @@ function IntroVideoSection() {
                     <motion.div className="md:hidden mt-3 px-4" initial={{ opacity: 0, y: 10 }} animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }} transition={{ delay: 0.8 }}>
                         <div className="flex items-center gap-2">
                             <div className="flex-1 h-[2px] bg-white/10 rounded-full overflow-hidden">
-                                <motion.div className="h-full bg-gradient-to-r from-electric-blue to-electric-blue/50" animate={{ width: ["0%", "100%"] }} transition={{ duration: 15, repeat: Infinity }} />
+                                <div className="h-full bg-gradient-to-r from-electric-blue to-electric-blue/50 w-full animate-pulse" />
                             </div>
                             <span className="text-white/30 text-[10px] font-mono">LIVE</span>
                         </div>
@@ -325,25 +319,25 @@ function IntroVideoSection() {
                         <motion.div className="absolute inset-0 bg-electric-blue/10 md:hidden" initial={{ scale: 0, opacity: 0 }} whileTap={{ scale: 2, opacity: [0, 0.3, 0] }} transition={{ duration: 0.6 }} style={{ borderRadius: "9999px" }} />
                         <div className="relative w-9 h-9 md:w-10 md:h-10 rounded-full bg-electric-blue/20 flex items-center justify-center group-hover:bg-electric-blue/40 transition-all duration-300">
                             <Play className="w-3.5 h-3.5 md:w-4 md:h-4 text-electric-blue fill-current ml-0.5" />
-                            <motion.div className="absolute inset-0 rounded-full border border-electric-blue/50" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }} transition={{ duration: 2, repeat: Infinity }} />
-                            <motion.div className="absolute inset-0 rounded-full border border-electric-blue/30 md:hidden" animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
+                            <div className="absolute inset-0 rounded-full border border-electric-blue/50 animate-ping opacity-20" />
+                            <div className="absolute inset-0 rounded-full border border-electric-blue/30 md:hidden animate-pulse" />
                         </div>
                         <div className="text-left">
                             <span className="block text-white/80 text-xs md:text-sm font-medium tracking-wider uppercase group-hover:text-white transition-colors">Showreel 2024</span>
                             <span className="block text-white/40 text-[10px] md:text-xs">Watch in Full</span>
                         </div>
-                        <motion.div className="ml-1 md:hidden" animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
+                        <div className="ml-1 md:hidden animate-pulse">
                             <svg className="w-4 h-4 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                        </motion.div>
+                        </div>
                     </motion.button>
                 </motion.div>
 
-                <motion.div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:hidden" animate={{ y: [0, 8, 0], opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 2, repeat: Infinity }}>
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:hidden animate-bounce opacity-60">
                     <div className="flex flex-col items-center gap-1">
                         <span className="text-white/30 text-[9px] tracking-widest uppercase">Scroll</span>
                         <svg className="w-4 h-4 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );
@@ -397,7 +391,7 @@ function SpotlightSection() {
                     </div>
                 </div>
             </div>
-            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-1/2 bg-electric-blue/5 blur-[150px] rounded-full pointer-events-none" />
+            <div className="hidden md:block absolute top-1/2 right-0 -translate-y-1/2 w-1/2 h-1/2 bg-electric-blue/5 blur-[150px] rounded-full pointer-events-none" />
 
             {/* Film Details Modal */}
             <AnimatePresence>

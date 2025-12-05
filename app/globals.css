@@ -12,6 +12,39 @@
 
 /* Custom Tailwind Utilities */
 @layer utilities {
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    33% {
+      transform: translate(10px, -15px);
+    }
+
+    66% {
+      transform: translate(-5px, -25px);
+    }
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  .animate-float {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  .animate-scanline {
+    animation: scanline 3s linear infinite;
+  }
 
   /* Custom Colors */
   .bg-electric-blue {
