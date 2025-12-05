@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CustomCursor } from "@/components/custom-cursor";
 
-const clonoid = localFont({
-  src: "../public/Clonoid-W01-Bold.ttf",
-  variable: "--font-clonoid",
+const conthrax = localFont({
+  src: "../public/Conthrax-SemiBold.otf",
+  variable: "--font-conthrax",
 });
 
 const montserrat = Montserrat({
@@ -45,7 +45,7 @@ export default function RootLayout({
           montserrat.variable,
           oswald.variable,
           roboto.variable,
-          clonoid.variable
+          conthrax.variable
         )}
       >
         <CustomCursor />
@@ -56,3 +56,4 @@ export default function RootLayout({
     </html>
   );
 }
+

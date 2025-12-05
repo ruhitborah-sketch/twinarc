@@ -63,6 +63,10 @@
     font-family: var(--font-oswald), sans-serif;
   }
 
+  .font-conthrax {
+    font-family: var(--font-conthrax), sans-serif;
+  }
+
   /* Gradient Colors */
   .from-electric-blue {
     --tw-gradient-from: var(--electric-blue) var(--tw-gradient-from-position);
@@ -119,4 +123,14 @@ html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
+}
+
+/* Hide Scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Instagram, Facebook, Youtube, MapPin, Mail, Phone } from "lucide-react";
 
 export function Footer() {
@@ -10,10 +11,32 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
 
                     {/* Brand */}
-                    <div className="space-y-6">
-                        <h2 className="text-2xl font-heading font-bold tracking-widest text-white">
-                            TWINARC<span className="text-electric-blue">MOTION</span>
-                        </h2>
+                    <div className="space-y-4">
+                        {/* Logo + TwinArc Motion on same line */}
+                        <div className="flex items-center gap-3">
+                            <div className="relative w-12 h-12 shrink-0">
+                                <Image
+                                    src="/logo-final.png"
+                                    alt="TwinArc Motion Logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                            <div className="flex flex-col leading-tight">
+                                <span
+                                    className="text-lg font-conthrax font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-200 to-slate-400 tracking-wider"
+                                    style={{ filter: "drop-shadow(0 0 6px rgba(255, 0, 150, 0.4))" }}
+                                >
+                                    TwinArc
+                                </span>
+                                <span
+                                    className="text-lg font-conthrax font-bold text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 via-blue-500 to-blue-700 tracking-wider"
+                                    style={{ filter: "drop-shadow(0 0 6px rgba(0, 150, 255, 0.4))" }}
+                                >
+                                    Motion
+                                </span>
+                            </div>
+                        </div>
                         <p className="text-white/50 text-sm leading-relaxed">
                             Creating cinematic universes from the heart of Northeast India.
                         </p>
